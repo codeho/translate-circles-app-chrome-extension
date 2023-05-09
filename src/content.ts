@@ -11,10 +11,11 @@ document.addEventListener(
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.command == "look_up_i18n_key") {
+    console.log("ELEMENT: ", element);
     if (element.dataset.i18nKey) {
       sendResponse({ result: "success", key: element.dataset.i18nKey });
     } else {
-      sendResponse({ result: "error key not found." });
+      sendResponse({ result: "maybe", key: element.textContent });
     }
   }
   if (request.command == "menu_open") {
